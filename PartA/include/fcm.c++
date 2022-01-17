@@ -2,6 +2,7 @@
 
 #define ALPHABET "abcdefghijklmnopqrstuvwxyz"
 #define ALPHABET_LENGTH 27
+#define LOWER_DECIMAL_ASCII_LETTER 97
 
 #define FACTOR(occor, total) (double)(occor + alpha) / (total + (alpha * ALPHABET_LENGTH))
 
@@ -10,11 +11,12 @@
 fcm::fcm(uint32_t k, double alpha) {
     this->k = k;
     this->alpha = alpha;
+
+    fill_table();
 }
 
 void fcm::fcm_readfile(string filename) {
     ifs.open(filename);
-
 
     string txt;
     char ctx[k+1];
@@ -25,13 +27,12 @@ void fcm::fcm_readfile(string filename) {
     while(ifs.get(c)) {
         if(isalpha(c)) {
             txt = string(ctx);
-            table.count(txt) > 0 ? table[txt][c]++ : table[txt][c] = 1;
+            table[txt][c]++;
             leftRotatebyOne(ctx, k);
             ctx[k-1] = c;
         }
     }
     ifs.close();
-    fcm::fill_table();
 }
 
 void fcm::fill_table() {
