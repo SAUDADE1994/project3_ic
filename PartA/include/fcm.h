@@ -36,7 +36,7 @@ private:
 
     double alpha;
 
-    double entropy = 0;
+    double entropy;
 
     ifstream ifs;
 };

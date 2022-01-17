@@ -95,17 +95,14 @@ void fcm::getEntropy() {
             res += ((factor) * log(factor)); 
         }
 
-        if(isnan(res)) continue;
-        
+        //if(isnan(res)) continue;
 
-        std::cout << res << endl;
-
-        ctx_entropy[it.first] = res;
+        isnan(res) ? ctx_entropy[it.first] = 0 : ctx_entropy[it.first] = -res;
         res = 0;
     }
 
     for(const auto &it : table) {
-        //std::cout << "ctx entropy = " << ctx_entropy[it.first] << "\tp_c = " <<  p_c[it.first] << endl;
+        std::cout << "ctx entropy = " << ctx_entropy[it.first] << "\tp_c = " <<  p_c[it.first] << endl;
         entropy += ctx_entropy[it.first] * p_c[it.first];
     }
 
