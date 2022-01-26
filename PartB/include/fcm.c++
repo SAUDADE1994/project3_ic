@@ -1,20 +1,17 @@
 #include "fcm.h"
 
-#define ALPHABET "abcdefghijklmnopqrstuvwxyz"
-#define ALPHABET_LENGTH 27
-#define FACTOR(occor, total) (double)(occor + alpha) / (total + (alpha * ALPHABET_LENGTH))
+#define FACTOR(occor, total) (double)(occor + alpha) / (total + (alpha * alphabet_length))
 
-
-fcm::fcm(uint32_t k, double alpha) {
+fcm::fcm(uint32_t k, double alpha, uint32_t alphabet_length) {
     this->k = k;
     this->alpha = alpha;
+    this->alphabet_length = alphabet_length;
 }
 
-void fcm::fcm_readfile(string filename) {
+void fcm::fcm_readfile(string filename, string alphabet) {
     ifs.open(filename);
 
-    string alphabet = string(ALPHABET);
-
+    this->alphabet = alphabet;
     string txt;
     char ctx[k+1];
     char c;
@@ -35,7 +32,7 @@ void fcm::fcm_readfile(string filename) {
 
 void fcm::fill_table() {
     for(auto const &it : table) {
-        for(auto const &elem : ALPHABET) {
+        for(auto const &elem : alphabet) {
             if(table[it.first].count(elem) == 0) {
                 table[it.first][elem] = 0;
             }
@@ -48,7 +45,7 @@ void fcm::getEntropy() {
     uint32_t soma = 0;
     // calcula o total em cada contexto e guarda em ctx_total
     for(auto const& it : table) {
-        for(auto const &elem : ALPHABET) {
+        for(auto const &elem : alphabet) {
             soma += table[it.first][elem];          // algumas somas estão a dar 0 ????
         }   
         ctx_total[it.first] = soma;

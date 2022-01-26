@@ -35,7 +35,7 @@ int main(void) {
     while(ifs.get(c)) {
         if(isalpha(c)) {
             txt = string(ctx);
-            cout << txt << endl;
+            cout << "ctx = " << txt << "c = " << c << endl;
             table.count(txt) > 0 ? table[txt][c]++ : table[txt][c] = 1;
             leftRotatebyOne(ctx, k);
             ctx[k-1] = c;
