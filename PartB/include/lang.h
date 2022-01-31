@@ -18,6 +18,8 @@ public:
 
     void readFile();
 
+    double getbitsPerChar();
+
     double readTextAnalysis();
 
     void printReference();
@@ -43,6 +45,10 @@ private:
     uint32_t k;
 
     double total_bits;
+    
+    double bitsPerChar;
+
+    double nChars;
 
     double alpha;
 };

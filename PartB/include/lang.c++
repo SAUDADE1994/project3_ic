@@ -42,6 +42,7 @@ void lang::readFile() {
     }
 }
 
+
 double lang::readTextAnalysis() {
     ifstream it;
     it.open(in_t);
@@ -55,9 +56,11 @@ double lang::readTextAnalysis() {
 
     double ocorr;
     double total;
-
+    nChars =0;
+    total_bits = 0;
     while(it.get(c)) {
         if(isalpha(c)) {
+            nChars +=1;  
             txt = string(ctx);
             if (ref[txt].count(c) > 0) {
                 ocorr = (double) ref[txt][c];
@@ -74,6 +77,11 @@ double lang::readTextAnalysis() {
     return total_bits;
 }
 
+double lang::getbitsPerChar(){
+  bitsPerChar = total_bits/nChars;
+
+  return bitsPerChar;
+}
 
 
 void lang::leftRotatebyOne(char arr[], int n)
