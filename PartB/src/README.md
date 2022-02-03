@@ -3,17 +3,13 @@ fcm-shannon
 
 COMPILE
 
-$ g++ main.c++ ../include/fcm.c++ ../include/lang.c++ -o main
+$ g++ findlang.c++ -lstdc++fs ../include/fcm.c++ ../include/lang.c++ -o findlang
 ---------------------------------------------------------------
 EXECUTE
 
-./main "localização_texto_a_comparar"
+./findlang ./samples/text/"name of the text" k alpha
 exemplos:
 
-$ ./main ../samples/ref/r_PT.txt 
+$ ./findlang ../samples/text/t_PT.txt 3 0.1
 	compara um texto em pt, com os vários textos modelos presentes em samples/ref/
-	
-$ ./main ../samples/ref/r_FR.txt
-	compara um texto em fr, com os vários textos modelos presentes em samples/ref/
-	
 ...
