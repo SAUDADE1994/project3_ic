@@ -40,6 +40,8 @@ void lang::readFile() {
         ref_total[it.first] = soma;
         soma = 0;
     }
+    
+    alphabet_length = alphabet.length();
 }
 
 
@@ -66,7 +68,7 @@ double lang::readTextAnalysis() {
                 ocorr = (double) ref[txt][c];
                 total = (double) ref_total[txt];
 
-                total_bits += -log2( (ocorr / total) );
+                total_bits += -log2( FACTOR(ocorr, total) );
             }
 
             leftRotatebyOne(ctx, k);
